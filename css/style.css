@@ -1,0 +1,793 @@
+/* =========================================================
+   Lanka Explorer - css/style.css
+   1. Theme variables        12. Footer
+   2. Reset                  13. Hover effects & transitions
+   3. Base styles            14. Badges & messages        (Week 03)
+   4. Header & navigation    15. Weather                  (Week 04)
+   5. Hero banner            16. Maps                     (Week 04)
+   6. Buttons                17. Loading spinner          (Week 04)
+   7. Category & card grids  18. My Trip extras           (Week 05)
+   8. Page title & controls  19. Dark mode                (Week 05)
+   9. Details page           20. Responsive & mobile menu
+  10. My Trip table
+  11. Forms
+   ========================================================= */
+
+/* ===== 1. THEME VARIABLES ===== */
+:root {
+  --primary: #0b6e6e;          /* ocean teal */
+  --primary-dark: #084c4c;
+  --accent: #f4a300;           /* saffron gold */
+  --dark: #1d2b2b;
+  --light: #f7f5ef;            /* sand */
+  --white: #ffffff;
+  --grey: #55605f;
+  --radius: 12px;
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --max-width: 1200px;
+}
+
+/* ===== 2. RESET ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== 3. BASE STYLES ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--dark);
+  background: var(--light);
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Poppins', sans-serif;
+  color: var(--primary-dark);
+  line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.8rem; margin-bottom: 1rem; }
+h3 { font-size: 1.25rem; }
+
+p { margin-bottom: 0.75rem; }
+a { color: var(--primary); }
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+/* Content for screen readers only (used for the results heading) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* The hidden attribute must win over the button display rule below */
+[hidden] {
+  display: none !important;
+}
+
+/* ===== 4. HEADER & NAVIGATION ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: var(--dark);
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.4rem 0;
+  border-bottom: 3px solid transparent;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--primary);
+  border-bottom-color: var(--accent);
+}
+
+.menu-toggle {
+  display: none;               /* hidden on large screens; shown in section 20 */
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.theme-toggle {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: transparent;
+  border: 2px solid var(--primary);
+  border-radius: 50px;
+  padding: 0.3rem 0.9rem;
+  cursor: pointer;
+}
+
+/* ===== 5. HERO BANNER ===== */
+#hero {
+  text-align: center;
+  padding: 5rem 1.5rem;
+  border-radius: var(--radius);
+  color: var(--white);
+  background:
+    linear-gradient(rgba(8, 76, 76, 0.65), rgba(8, 76, 76, 0.65)),
+    url('../images/hero.jpg') center / cover no-repeat;
+  background-color: var(--primary-dark);
+}
+
+#hero h1 {
+  color: var(--white);
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+#hero p {
+  font-size: 1.15rem;
+  max-width: 640px;
+  margin: 0 auto 2rem;
+}
+
+/* ===== 6. BUTTONS ===== */
+.btn,
+button {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border: none;
+  border-radius: 50px;
+  background: var(--primary);
+  color: var(--white);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn {
+  background: var(--accent);
+  color: var(--dark);
+}
+
+#why-us ul {
+  display: grid;
+  gap: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+/* ===== 7. CATEGORY & CARD GRIDS ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+#destination-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.category,
+.card,
+.member {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  border-top: 4px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  padding: 0;
+  overflow: hidden;
+  border-top: none;
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card h3,
+.card p,
+.card a {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+
+.card h3 {
+  margin-top: 1.25rem;
+}
+
+.card a {
+  margin-top: auto;
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+}
+
+.card .meta,
+.card .fee {
+  font-size: 0.9rem;
+  color: var(--grey);
+}
+
+/* ===== 8. PAGE TITLE & CONTROLS ===== */
+#page-title {
+  text-align: center;
+}
+
+#controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 200px;
+}
+
+#result-count {
+  color: var(--grey);
+  font-size: 0.95rem;
+}
+
+/* ===== 9. DETAILS PAGE ===== */
+#destination {
+  /* the content arrives by JavaScript: reserving the height stops the page jumping */
+  min-height: 760px;
+}
+
+#destination img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+
+#destination .meta {
+  color: var(--grey);
+  margin-bottom: 1rem;
+}
+
+#destination h2 {
+  margin-top: 1.75rem;
+}
+
+#destination ul {
+  padding-left: 1.25rem;
+}
+
+#destination li {
+  margin-bottom: 0.4rem;
+}
+
+#weather,
+#map {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  color: var(--grey);
+}
+
+#map {
+  min-height: 200px;
+}
+
+/* ===== 10. MY TRIP TABLE ===== */
+#trip-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+#trip-table th,
+#trip-table td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(107, 117, 117, 0.2);
+}
+
+#trip-table thead {
+  background: var(--primary);
+  color: var(--white);
+}
+
+#trip-table tfoot {
+  font-weight: 700;
+  background: rgba(244, 163, 0, 0.12);
+}
+
+#trip-summary {
+  margin-bottom: 1rem;
+  color: var(--grey);
+}
+
+/* ===== 11. FORMS ===== */
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
+  border: 2px solid rgba(107, 117, 117, 0.35);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--dark);
+  margin-bottom: 1rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+fieldset {
+  border: 2px solid rgba(107, 117, 117, 0.35);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+legend {
+  font-weight: 600;
+  padding: 0 0.4rem;
+}
+
+fieldset label {
+  display: inline-block;
+  font-weight: 400;
+  margin-right: 1.25rem;
+}
+
+fieldset input {
+  width: auto;
+  margin-right: 0.35rem;
+  margin-bottom: 0;
+}
+
+#enquiry form {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.75rem;
+  max-width: 640px;
+}
+
+/* ===== 12. FOOTER ===== */
+footer {
+  background: var(--primary-dark);
+  color: var(--white);
+  text-align: center;
+  padding: 2rem 1.5rem;
+}
+
+footer a {
+  color: var(--accent);
+}
+
+footer p {
+  margin-bottom: 0.35rem;
+}
+
+/* ===== 13. HOVER EFFECTS & TRANSITIONS ===== */
+.card,
+.category,
+.member {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover,
+.category:hover,
+.member:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.14);
+}
+
+.card a:hover {
+  color: var(--primary-dark);
+}
+
+.btn:hover,
+button:hover {
+  background: var(--primary-dark);
+  transition: background 0.25s ease;
+}
+
+.btn:hover {
+  background: var(--accent);
+  filter: brightness(0.94);
+}
+
+input,
+select,
+textarea {
+  transition: border-color 0.2s ease, background 0.3s ease;
+}
+
+/* ===== 14. BADGES & MESSAGES ===== */
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-right: 0.4rem;
+}
+
+.badge-heritage { background: #8b4513; }
+.badge-beach    { background: #1565c0; }
+.badge-nature   { background: #2e7d32; }
+.badge-wildlife { background: #bf360c; }
+.badge-other    { background: var(--grey); }
+
+.no-results,
+.error {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2rem;
+  color: var(--grey);
+}
+
+.error {
+  color: #c62828;
+}
+
+.form-error,
+.form-success {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.form-error {
+  background: #fdecea;
+  color: #c62828;
+}
+
+.form-error ul {
+  padding-left: 1.25rem;
+}
+
+.form-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+/* ===== 15. WEATHER ===== */
+#weather {
+  color: var(--dark);
+  min-height: 190px;              /* reserves space, so the page does not jump */
+}
+
+.weather-now .temp {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0;
+}
+
+.forecast {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.forecast-day {
+  background: var(--light);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.forecast-day p {
+  margin-bottom: 0.25rem;
+}
+
+/* ===== 16. MAPS ===== */
+#map,
+#all-map {
+  padding: 0;
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  position: relative;
+  z-index: 0;                  /* keeps the map below the sticky header */
+}
+
+#map {
+  height: 350px;
+}
+
+#all-map {
+  height: 450px;
+}
+
+/* ===== 17. LOADING SPINNER ===== */
+.loading {
+  grid-column: 1 / -1;         /* full width when used inside a card grid */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  color: var(--grey);
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #d6e4e4;
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== 18. MY TRIP EXTRAS ===== */
+#add-to-trip {
+  margin-top: 1rem;
+}
+
+#add-to-trip.added {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.remove-btn {
+  padding: 0.3rem 0.9rem;
+  font-size: 0.85rem;
+  background: #fdecea;
+  color: #c62828;
+}
+
+.remove-btn:hover {
+  background: #c62828;
+  color: #ffffff;
+}
+
+#travellers {
+  width: 5rem;
+  margin-left: 0.5rem;
+}
+
+#clear-trip {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+#clear-trip:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+/* ===== 19. DARK MODE ===== */
+body.dark {
+  --primary: #4fd1c5;
+  --primary-dark: #81e6d9;
+  --accent: #f6b93b;
+  --dark: #e6eeee;             /* text colour */
+  --light: #121a1a;            /* page background */
+  --white: #1b2626;            /* card surface */
+  --grey: #9fb0b0;
+}
+
+/* Colours that must stay fixed in both themes */
+body.dark header {
+  background: #16201f;
+}
+
+body.dark footer {
+  background: #0e1616;
+}
+
+body.dark #trip-table thead {
+  background: #16201f;
+  color: #ffffff;
+}
+
+body.dark #trip-table tfoot {
+  background: rgba(246, 185, 59, 0.15);
+}
+
+body.dark #hero h1,
+body.dark #hero p,
+body.dark #hero .btn,
+body.dark .badge {
+  color: #ffffff;
+}
+
+body.dark #weather,
+body.dark #map {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+body.dark .forecast-day {
+  background: #16201f;
+}
+
+body.dark .btn {
+  color: #1d2b2b;
+}
+
+body.dark .form-error {
+  background: #3a1d1d;
+  color: #ffb4a9;
+}
+
+body.dark .form-success {
+  background: #173226;
+  color: #a5e8b0;
+}
+
+body.dark .remove-btn {
+  background: #3a1d1d;
+  color: #ffb4a9;
+}
+
+/* ===== 20. RESPONSIVE & MOBILE MENU ===== */
+@media (max-width: 760px) {
+  h1 { font-size: 1.9rem; }
+  h2 { font-size: 1.4rem; }
+
+  #hero {
+    padding: 3.5rem 1rem;
+  }
+
+  #hero h1 {
+    font-size: 2.1rem;
+  }
+
+  header {
+    padding: 1rem 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  nav {
+    display: none;
+    width: 100%;
+  }
+
+  nav.open {
+    display: block;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding-top: 1rem;
+  }
+
+  nav a {
+    display: block;
+    width: 100%;
+  }
+
+  #destination-list,
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  #destination {
+    min-height: 480px;
+  }
+
+  #trip-table {
+    font-size: 0.85rem;
+  }
+
+  #trip-table th,
+  #trip-table td {
+    padding: 0.6rem 0.5rem;
+  }
+
+  #trip-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 420px) {
+  main {
+    padding: 1.5rem 1rem;
+  }
+
+  .card img {
+    height: 160px;
+  }
+}
